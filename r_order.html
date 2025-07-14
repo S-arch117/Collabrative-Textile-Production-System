@@ -1,0 +1,72 @@
+{%include 'header.html'%}
+
+<html>
+<head>
+<style>
+table {
+	font-family: times new roman;
+	border-collapse: collapse;
+	width: 100%;
+}
+td, th{
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><center><i>Requested Orders</i></center></h1>
+</div>
+<table class="table table-bordered">
+	<tr>
+		<th>Sno</th>
+		<th>Order Id</th>
+		<th>Company Name</th>
+		<th>Mobile</th>
+		<th>Order Item</th>
+		<th>Quantity</th>
+		<th>Image</th>
+		<th>Delivery Date</th>
+		<th>Amt/Product</th>
+		<th>Area of Work</th>
+		<th>Quote</th>
+		<th>Status</th>
+
+	</tr>
+{% for i in detail %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{i.order_id}}</td>
+		<td>{{i.company_name.company_name}}</td>
+
+		<td>{{i.company_name.company_name.mobile}}</td>
+
+		<td>{{i.company_name.order_item}}</td>
+		<td>{{i.company_name.quantity}}</td>
+		<td><a href="/media/{{i.company_name.image}}" target="_blank"><i class="fa fa-download"></i></a></td>
+		<td>{{i.company_name.delivery_date}}</td>
+		<td>{{i.company_name.amount_per_product}}</td>
+		<td>{{i.company_name.area_of_work}}</td>
+		<td><a href="/media/{{i.quote}}" target="_blank" class="btn btn-success btn-xs" ><i class="fa fa-download"> Quote</i></a></td>
+		<td>
+			{% if i.status == 'pending' %}
+				<span style="color: orange;font-weight: bold;">Waiting for Approval</span>
+			{% elif i.status == 'accept' %}
+				<span style="color: purple;font-weight: bold;">Approved</span>
+			{% elif i.status == 'reject' %}
+				<span style="color: red;font-weight: bold;">Rejected</span>
+				
+			{% endif %}
+		</td>
+	</tr>
+{% empty %}
+	<tr>
+		<td>No Enquiry</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>
+{%include 'footer.html'%}

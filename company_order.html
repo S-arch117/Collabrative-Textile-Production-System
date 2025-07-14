@@ -1,0 +1,63 @@
+{%include 'header.html'%}
+
+<html>
+<head>
+<style>
+table {
+	font-family: times new roman;
+	border-collapse: collapse;
+	width: 100%;
+}
+td, th{
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><center><i>Requested Orders</i></center></h1>
+</div>
+<table class="table table-bordered">
+	<tr>
+		<th>Sno</th>
+		<th>Order Id</th>
+		<th>Company Name</th>
+		<th>Email</th>
+		<th>Mobile</th>
+		<th>Quote</th>
+		<th>Their Delivery Date</th>
+		<th>Msg</th>
+		<th>Option</th>
+
+	</tr>
+{% for i in row %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{i.1}}</td>
+		<td>{{i.5}}</td>
+		<td>{{i.6}}</td>
+		<td>{{i.7}}</td>
+		<td><a href="/media/{{i.2}}" class="btn btn-info btn-xs" ><i class="fa fa-download"> Quote</i></a></td>
+		<td>{{i.3}}</td>
+		<td>{{i.4}}</td>
+		<td>{% if i.8 == 'pending' %}
+		<a href="{% url 'accept' pk=i.0 %}" class="btn btn-success">Accept</a>
+		<a href="{% url 'reject' pk=i.0 %}" class="btn btn-danger" onclick="return confirm('Are you sure want to delete?')"> Reject </a>			
+		{% elif i.8 == 'accept' %}
+				<span style="color: purple;font-weight: bold;">Approved</span>
+		{% elif i.8 == 'reject' %}
+				<span style="color: red;font-weight: bold;">Rejected</span>
+				
+		{% endif %}</td>
+	</tr>
+{% empty %}
+	<tr>
+		<td>No Order</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>
+{%include 'footer.html'%}

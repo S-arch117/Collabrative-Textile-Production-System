@@ -1,0 +1,52 @@
+{%include 'header.html'%}
+
+<html>
+<head>
+<style>
+table {
+	font-family: times new roman;
+	border-collapse: collapse;
+	width: 100%;
+}
+td, th{
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><center><i>Approved Orders</i></center></h1>
+</div>
+<table class="table table-bordered">
+	<tr>
+		<th>Sno</th>
+		<th>Order Id</th>
+		<th>Order Item</th>
+		<th>Quantity</th>
+		<th>Delivery Date</th>
+		<th>Area</th>
+		<th>Option</th>
+
+	</tr>
+{% for i in row %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{i.1}}</td>
+		<td>{{i.2}}</td>
+		<td>{{i.3}}</td>
+		<td>{{i.4}}</td>
+		<td>{{i.5}}</td>
+		<td>
+		<a href="{% url 'update' pk=i.0 %}" class="btn btn-success"><i class="fa fa-edit"> Work Status</a></td>
+	</tr>
+{% empty %}
+	<tr>
+		<td>No Order</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>
+{%include 'footer.html'%}

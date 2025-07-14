@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>COLLABRATIVE TEXTILE PRODUCTION SYSTEM</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{% static 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' %}">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{% static 'plugins/jqvmap/jqvmap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.css' %}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet' %}">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'home' %}" class="brand-link">
+      
+      <span class="brand-text font-weight-light" style="color: #FFF;font-family: monospace;">COLLABRATIVE TEXTILE </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          
+			<li class="nav-item">
+            <a href="{% url 'dashboard' %}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+               Dashboard
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'add_job' %}" class="nav-link">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>
+               Add Job
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'jobs' %}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Jobs
+              </p>
+            </a>
+          </li>
+        <li class="nav-item">
+            <a href="{% url 'applied_job' %}" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+               Applied Jobs
+              </p>
+            </a>
+          </li>
+          {% if request.session.user_type == 'HPC' %}
+        <li class="nav-item">
+            <a href="{% url 'add_order' %}" class="nav-link">
+              <i class="nav-icon fas fa-plus-circle"></i>
+              <p>
+              Add Order 
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'order_item' %}" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+               Order Detail
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'company_order' %}" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+               Requested Order
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'update_work' %}" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+               Update Work Status
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'payment' %}" class="nav-link">
+              <i class="nav-icon fas fa-eye"></i>
+              <p>
+               Payment Status
+              </p>
+            </a>
+          </li>
+          {% endif %}
+          {% if request.session.user_type == 'LPC' %}
+
+        <li class="nav-item">
+            <a href="{% url 'material_details' %}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+               Get Order
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'r_order' %}" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+               Requested Order
+              </p>
+            </a>
+          </li>
+
+        <li class="nav-item">
+            <a href="{% url 'user_payment' %}" class="nav-link">
+              <i class="nav-icon fas fa-eye"></i>
+              <p>
+              Payment Status
+              </p>
+            </a>
+          </li>
+          {% endif %}
+
+           <li class="nav-item has-treeview">
+            <a href="{% url 'logout' %}" class="nav-link">
+              <i class="nav-icon fas fa-inbox"></i> 
+              <p>
+                 logout
+              </p>
+            </a>
+           </li>
+
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  <style type="text/css">
+    th,tr
+    {
+      text-align: center;
+    }
+    .content-wrapper
+    {
+      background: transparent !important;
+    }
+    [class*=sidebar-dark-]
+    {
+      background-color: purple;
+
+    }
+    .nav-item p
+    {
+      color: #FFF !important;
+      font-family: Book Antiqua;
+      font-size: 18px;
+    }
+
+    .nav-item i
+    {
+      color: skyblue !important;
+    }
+  </style>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">

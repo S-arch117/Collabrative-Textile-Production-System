@@ -1,0 +1,242 @@
+
+{% load static %}
+{% load mathfilters %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/charts/chartist-bundle/chartist.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/charts/morris-bundle/morris.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/charts/c3charts/c3.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icon-css/flag-icon.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+
+<html style="background: transparent !important;">
+<head>
+</head>
+<body style="overflow-x: hidden;background: url({% static 'images/2.jpg' %});">
+<div class="bg">
+   <div class="container">
+    {% include 'menu.html' %}
+    </div>
+</div>
+  <div class="container" style="width: 80% !important;">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Company Feedback Details</div>
+      <div class="card-body">
+
+{% for i in detail %}
+   
+  <div class="card hovercard" style="margin-top:0;">
+        <div class="card-background">
+            <img class="card-bkimg" alt="" src="/media/{{i.logo}}">
+            <!-- http://lorempixel.com/850/280/people/9/ -->
+        </div>
+        <div class="useravatar">
+            <img alt="" src="/media/{{i.logo}}">
+        </div>
+        <div class="card-info" style="font-size:20px;font-weight:bold;text-align: center;"> <span class="card-title">{{i.company_name}}</span> <span class="card-title">Company Type:{{i.type_of_company}}</span>
+ 
+        </div>
+    </div>
+
+  {% endfor %}   
+    <div class="container">
+        {% if messages %}
+          {% for i in messages %}
+            <div class="alert alert-danger">{{i}}</div>
+          {% endfor %}
+        {% endif %}
+ 
+                    
+           <div class='heading'>
+            <h3 class='pull-left'>
+               {% with a=tot.comment__count %}
+              {% with b=cnt.rank__sum %}
+              
+                 <div class="btn btn-success btn-xs">{{ b|div:a |floatformat}} 
+                  <i class="fa fa-star" style="color: #FFFF;"> </i></div> {% if tot.comment__count %}{{tot.comment__count}} Ratings {% endif %}
+                {% endwith %}
+                {% endwith %}</h3>
+            <div style='clear:both;'></div>
+            </div>
+
+        <div class="commentcontainer">
+    <div class="row demo-table" >
+
+           {% for i in row %}
+    
+        <div class="col-md-2">
+        <img src="/media/{{i.1}}" class="img-circle" width="100%">
+        </div>
+        <div class="col-md-10" style="background:#fff; padding:20px;border-radius:10px;margin-bottom:30px;">
+        <div class="pull-left" style="color: #39F; font: bold 15px Georgia; padding-bottom:5px;">
+          Company Name: {{i.0}}
+          
+        </div>
+        <style type="text/css">
+          .fa-star
+          {
+              color: yellow;
+          }
+        </style>
+        
+        <div class="pull-right" style="color: #39F; font: bold 15px Georgia; padding-bottom:5px;" >
+          Posted on: {{i.4}}<br>
+          {% if i.3 == 5 %}
+            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+          {% elif i.3 == 4 %}
+            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+            {% elif i.3 == 3 %}
+            <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+            {% elif i.3 == 2 %}
+            <i class="fa fa-star"></i><i class="fa fa-star"></i>
+            {% elif i.3 == 1 %}
+            <i class="fa fa-star"></i>
+          {% endif %}
+          
+          
+          
+        </div>
+        <div style="clear:both;">
+        </div>
+         {{i.2}}
+        </div>
+
+    {% endfor %}
+    </div>
+    </div>
+  </div>
+    {% if request.session.user %}
+         <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" style="margin-top:20px;">{% csrf_token %}
+      <div class="form-group">
+      <label class="control-label col-sm-2">FeedBack</label>
+      <div class="col-sm-10">
+        <textarea  class="form-control" name="comment" style="height:200px;"></textarea>
+      </div>
+      </div><br>
+        <div class="form-group">
+      <label class="control-label col-sm-2">Rank</label>
+      <label class="checkbox-inline"><input type="checkbox" value="1" name="rank"> 1</label>
+    <label class="checkbox-inline"><input type="checkbox" value="2" name="rank"> 2</label>
+    <label class="checkbox-inline"><input type="checkbox" value="3" name="rank"> 3</label>
+    <label class="checkbox-inline"><input type="checkbox" value="4" name="rank"> 4</label>
+    <label class="checkbox-inline"><input type="checkbox" value="5" name="rank"> 5</label>
+   
+  </div><br>
+      <div class="form-group"> 
+      <div class="col-sm-offset-2 col-sm-8">
+        <input type="submit" class="btn btn-success" value="Post Your Feedback" name="feedb">
+      </div>
+      </div>
+      </form>
+    {% endif %}
+      </div>
+    
+       
+<style>
+.commentcontainer
+{
+  background:url({% static 'img/darkgrain.png' %}) repeat;
+  padding:40px;
+  border-radius:5px;
+}
+.or
+{
+  color:green;
+  text-align:center;
+  font-size:20px;
+  text-transform:capitalize;
+  font-weight:bold;
+  margin-bottom:200px;
+}
+
+.card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #FFF;
+    -webkit-border-top-left-radius:5px;
+    -moz-border-top-left-radius:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-top-right-radius:5px;
+    border-top-right-radius:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+.card.hovercard .card-background {
+    height: 130px;
+}
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.5);
+}
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+.card.hovercard .card-info .card-title {
+    padding:0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #262626;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+.btn-pref .btn {
+    -webkit-border-radius:0 !important;
+}
+
+
+</style>
+<script>
+</script>
+      </div>
+    </div>
+  </div>
+</body>

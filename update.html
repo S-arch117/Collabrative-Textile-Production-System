@@ -1,0 +1,51 @@
+{%include 'header.html'%}
+<html>
+<head>
+<center><h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><i>UPDATE WORK DETAIL</i></h1></center>
+<title>ONLINE COLLABRATION FOR TEXTILE</title>
+</head>
+<body>
+ <div class="container" style="margin:0 auto;width: 80%;">
+	{% if messages %}
+              {% for i in messages %}
+                <div class="alert alert-success">{{i}}</div>
+              {% endfor %}
+            {% endif %}
+	<div class="row">
+	<form method="post" enctype="multipart/form-data">{% csrf_token %}
+		{% for i in detail %}
+	<div class="form-group">
+		<label>Order Taken Date:</label><br>
+		<input type="date" style=" height:30px;" name="order_taken_date"  class="form-control" value="{{i.order_taken_date}}"><br>
+		<label>Order Delivered Date:</label><br>
+		<input type="date" style="width:265px; height:30px;" name="order_return_date"  class="form-control" value="{{i.order_return_date}}"><br>
+		<label>Work Status:</label><br>
+		<select name="working_status" class="form-control">
+			
+		  <option value="">Select</option>
+
+		  <option value="yettostart">Yet to Start</option>
+
+		  <option value="Processing">Processing</option>
+
+		  <option value="Finished">Finished</option>
+		</select><br>
+
+		<label>Payment Status:</label><br>
+
+		<select name="payment_status" required="" id="id_status" class="form-control">
+		  <option value="" selected="">Select</option>
+
+		  <option value="Pending">Pending</option>
+
+		  <option value="Paid">Paid</option>
+
+		</select><br>
+		<input type="submit" value="Update Work Status" class="btn btn-success">
+		{% endfor %}
+	</form>
+	</div>
+ </div>
+ </body>
+</html>
+{%include 'footer.html'%}

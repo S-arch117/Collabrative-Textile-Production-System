@@ -1,0 +1,69 @@
+{% load static %}
+<html style="background: transparent !important;">
+<head>
+</head>
+<body style="overflow-x: hidden;background: url({% static 'images/Reg.jpeg' %});">
+<div class="bg">
+   <div class="container">
+    {% include 'menu.html' %}
+    </div>
+</div>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <h3>Register Here</h3>
+    </div>
+     {% if messages %}
+          {% for i in messages %}
+            <div class="alert alert-success">{{i}}</div>
+          {% endfor %}
+        {% endif %}
+    <form method="POST" action="" enctype="multipart/form-data"> {% csrf_token %}
+      <input type="text"  class="fadeIn second" name="company_name" placeholder="Company Name">
+      <input type="email" id="email" class="fadeIn second" name="email" placeholder="Email Id">
+      <input type="number" id="mobile" class="fadeIn third" name="mobile" placeholder="Phone Number">
+      <input type="text" id="username" class="fadeIn third" name="username" placeholder="Username">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+      <input type="text" id="no_of_workers" class="fadeIn third" name="no_of_workers" placeholder="No of Workers">
+      <input type="text" id="year_of_start" class="fadeIn third" name="year_of_start" placeholder="Year of Start">
+      <input type="text" id="area_of_work" class="fadeIn third" name="area_of_work" placeholder="Area of Work">
+      <input type="text" id="machines" class="fadeIn third" name="machines" placeholder="Machines"><br>
+      <label>Type of Company</label><br>
+      <select name="type_of_company" class="form-control" style="width: 90%;margin: 0 auto;">
+        <option value="">Select</option>
+        <option value="LPC">LPC</option>
+        <option value="HPC">HPC</option>
+      </select>
+      <input type="text" id="city" class="fadeIn third" name="city" placeholder="City">
+      <textarea name="addr" placeholder="Address"></textarea>
+      
+      
+      <input type="submit" class="fadeIn fourth" value="Register">
+    </form>
+  </div>
+</div>
+<style type="text/css">
+  input[type=number] {
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+    border: 2px solid #f6f6f6;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+</style>
+
+</body>
+</html>

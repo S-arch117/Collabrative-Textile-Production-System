@@ -1,0 +1,63 @@
+{%include 'header.html'%}
+<html>
+<head>
+<center><h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><i>ADD ORDER DETAIL</i></h1></center>
+<title> COLLABRATION FOR TEXTILE</title>
+</head>
+<body>
+ <div class="container" style="margin:0 auto;width: 80%;">
+	{% if messages %}
+              {% for i in messages %}
+                <div class="alert alert-success">{{i}}</div>
+              {% endfor %}
+            {% endif %}
+	<div class="row">
+	<form method="post" enctype="multipart/form-data">{% csrf_token %}
+	<div class="form-group">
+		<label>Order Item:</label><br>
+		<input type="text" style=" height:30px;" name="order_item"  class="form-control"><br>
+		<label>Quantity:</label><br>
+		<input type="number" style="width:265px; height:30px;" name="quantity"  class="form-control" ><br>
+		<label>Product Sample Image:</label><br>
+		<input type="file" style="width:265px; height:30px;" name="image"  class="form-control" ><br>
+		<label>Delivery Date:</label><br>
+		<input type="date" style="width:265px; height:30px;" name="delivery_date"  class="form-control" ><br>
+		<label>Amount Per Product:</label><br>
+		<input type="text" style="width:265px; height:30px;" name="amount_per_product"  class="form-control" ><br>
+		<label>Area of Work:</label><br>
+		<select name="area_of_work" class="form-control">
+			
+		  <option value="">Select</option>
+
+		  <option value="Knitting">Knitting</option>
+
+		  <option value="Dying">Dying</option>
+
+		  <option value="Cutting">Cutting and Stitching</option>
+
+		  <option value="Printing">Printing</option>
+
+		  <option value="Ironing">Ironing</option>
+
+		  <option value="Quality">Quality Checking and Packing</option>
+
+		  <option value="Checking">Checking and Approval</option>
+		</select><br>
+
+		<label>Status:</label><br>
+
+		<select name="status" required="" id="id_status" class="form-control">
+		  <option value="" selected="">Select</option>
+
+		  <option value="Open">Open</option>
+
+		  <option value="Closed">Closed</option>
+
+		</select><br>
+		<input type="submit" value="Add Order Detail" class="btn btn-success">
+	</form>
+	</div>
+ </div>
+ </body>
+</html>
+{%include 'footer.html'%}

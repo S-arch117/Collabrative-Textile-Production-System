@@ -1,0 +1,62 @@
+{%include 'header.html'%}
+{% load mathfilters %}
+
+<html>
+<head>
+<style>
+table {
+	font-family: times new roman;
+	border-collapse: collapse;
+	width: 100%;
+}
+td, th{
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><center><i>Payment Detail</i></center></h1>
+</div>
+<table class="table table-bordered">
+	<tr>
+		<th>Sno</th>
+		<th>Order Id</th>
+		<th>Order Item</th>
+		<th>Quantity</th>
+		<th>Amount Per Product</th>
+		<th>Total Amount</th>
+		<th>Order Taken Date</th>
+		<th>Delivery Date</th>
+		<th>Work Status</th>
+		<th>Payment Status</th>
+
+	</tr>
+{% for i in detail %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{i.order_id}}</td>
+		<td>{{i.company_name.order_item}}</td>
+		<td>{{i.company_name.quantity}}</td>
+		<td>{{i.company_name.amount_per_product}} Rs</td>
+		<td>{% with answer=i.company_name.quantity %}
+            {{ answer|mul:i.company_name.amount_per_product }} Rs 
+           {% endwith %}
+
+         </td>
+		<td>{{i.order_taken_date}}</td>
+		<td>{{i.order_return_date}}</td>
+		<td>{{i.working_status}}</td>
+		<td>{{i.payment_status}}</td>
+	</tr>
+{% empty %}
+	<tr>
+		<td>No Order</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>
+{%include 'footer.html'%}

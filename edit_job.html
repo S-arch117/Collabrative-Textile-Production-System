@@ -1,0 +1,64 @@
+{%include 'header.html'%}
+<html>
+<head>
+<center><h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><i>ADD JOB DETAILS</i></h1></center>
+<title>ONLINE COLLABRATION FOR TEXTILE</title>
+</head>
+<body>
+ <div class="container" style="margin:0 auto;width: 80%;">
+	{% if messages %}
+              {% for i in messages %}
+                <div class="alert alert-success">{{i}}</div>
+              {% endfor %}
+            {% endif %}
+	<div class="row">
+	<form method="post" enctype="multipart/form-data">{% csrf_token %}
+		{% for i in detail %}
+	<div class="form-group">
+		<label>Job Title:</label><br>
+		<input type="text" style="width:265px; height:30px;" name="job_title"  class="form-control" value="{{i.job_title}}" ><br>
+		<label>Position:</label><br>
+		<input type="text" style="width:265px; height:30px;" name="position"  class="form-control" value="{{i.position}}"><br>
+		<label>Experience:</label><br>
+		<input type="text" style="width:265px; height:30px;" name="experience"  class="form-control" value="{{i.experience}}"><br>
+		<label>Salary:</label><br>
+		<input type="text" style="width:265px; height:30px;" name="salary"  class="form-control" value="{{i.salary}}"><br>
+		<label>Area of Work:</label><br>
+		<select name="area_of_work" class="form-control">
+			
+		  <option value="">Select</option>
+
+		  <option value="Knitting">Knitting</option>
+
+		  <option value="Dying">Dying</option>
+
+		  <option value="Cutting">Cutting and Stitching</option>
+
+		  <option value="Printing">Printing</option>
+
+		  <option value="Ironing">Ironing</option>
+
+		  <option value="Quality">Quality Checking and Packing</option>
+
+		  <option value="Checking">Checking and Approval</option>
+		</select><br>
+		<label>Job Status</label><br>
+		<select name="status" class="form-control">
+			
+		  <option value="">Select</option>
+
+		  <option value="Open">Open</option>
+
+		  <option value="Closed">Closed</option>
+
+		</select><br>
+		<label>Job Description:</label><br>
+		<textarea class="form-control" name="description">{{i.description}}</textarea><br>
+		<input type="submit" value="Update Job Detail" class="btn btn-success">
+		{% endfor  %}
+	</form>
+	</div>
+ </div>
+ </body>
+</html>
+{%include 'footer.html'%}

@@ -1,0 +1,33 @@
+{% load static %}
+<html style="background: transparent !important;">
+<head>
+</head>
+<body style="overflow-x: hidden;background: url({% static 'images/1.jpg' %}); background-size:100%;">
+  <div class="bg">
+   <div class="container" >
+    {% include 'menu.html' %}
+    </div>
+  </div>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <h3>Request Order</h3>
+    </div>
+     {% if messages %}
+          {% for i in messages %}
+            <div class="alert alert-success">{{i}}</div>
+          {% endfor %}
+        {% endif %}
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+      <label>Send Quote</label><br>
+      <input type="file"  class="fadeIn second" name="quote" placeholder="Send Quote"><br>
+      <label>Your Delivery Date</label><br>
+      <input type="date" class="fadeIn second" name="expected_date"><br>
+      <label>Message</label><br>
+      <textarea class="form-control" name="msg" style="width: 90%;margin: 0 auto 10px;"></textarea>
+       <input type="submit" class="fadeIn fourth" value="Send Quote">
+    </form>
+  </div>
+</div>
+</body>
+</html>

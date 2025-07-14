@@ -1,0 +1,91 @@
+{% load static %}
+<html style="background: transparent !important;">
+<head>
+</head>
+<body style="overflow-x: hidden;margin:0;padding: 0;">
+  <div class="bg">
+   <div class="container" >
+    {% include 'menu.html' %}
+    </div>
+  </div>
+<div class="wrapper fadeInDown" style="margin:30px 0;padding: 0;">
+  <div id="formContent" style="max-width:1000px !important;padding-bottom: 30px;padding-left: 20px;">
+    <div class="fadeIn first">
+      <h2 style="color:green;font-weight: bold;margin: 0; padding-top: 30px;">Make A Review</h2>
+    </div>
+    <div class="row">
+        {% for i in detail %}
+        <div class="box">
+          <div class="col-md-4">
+            <img src="/media/{{i.logo}}" class="img-responsive">
+          </div>
+          <div class="col-md-7">
+              <h2>Company Name: {{i.company_name}}</h2>
+              <h4 style="color: purple;">Company Type : {{i.type_of_company}} </h4>
+              {% if i.type_of_company == 'HPC' %}
+              <div class="pull-right"><a href="{% url 'single_review' pk=i.id %}" class="btn"  >Make  a Review</a></div>
+              {% elif i.type_of_company == 'LPC' %}
+              <div class="pull-right"><a href="{% url 'single_review_lpc' pk=i.id %}" class="btn"  style="background-color: green;">Make  a Review</a></div>
+              {% endif %}
+              <div style="clear: both;"></div>
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  .col-md-4
+  {
+    float: left;
+    width: 30% !important;
+        margin-bottom: 20px;
+
+  }
+  .img-responsive
+  {
+    width: 100% !important;
+  }
+   .col-md-7
+  {
+    float: right;
+    width: 65% !important;
+    padding-right: 20px;
+    text-align: left; 
+    margin-bottom: 20px;
+  }
+    .col-md-7 h2
+    {
+      text-align: left;
+      color: #000;
+
+    }
+    .pull-left
+  {
+    float: left;
+    font-weight: bold;
+  }
+   .pull-right
+  {
+    float: right;
+  }
+  a.btn
+  {
+    background-color:orange;
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+  a.btn:hover
+  {
+     background-color: #000;
+  }
+</style>
+</body>
+</html>

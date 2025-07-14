@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+{% load static %}
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>COLLABRATIVE TEXTILE PRODUCTION SYSTEM</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="{% url 'home' %}"> COLLABRATIVE FOR <span>TEXTILE</span></a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="{% url 'home' %}">Home</a></li>
+			       	<li><a href="{% url 'register' %}">Register</a></li>
+			       	<li> <a href="{% url 'user_login' %}"> Company Login</a></li>
+			       	<li> <a href="{% url 'material_details' %}">Get Order</a></li>
+			       	<li> <a href="{% url 'job_detail' %}">Apply Job</a></li>
+			       	<li>      <a href="{% url 'make_review' %}">Write Review</a>
+</li>
+				
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+			<section class="banner full">
+				<article>
+					<img src="{% static 'images/1.jpg' %}" alt="" />
+					<div class="inner">
+						<header>
+							<p> COLLABRATIVE TEXTILE</p>
+							<h2>PRODUCTION SYSTEM</h2>
+						</header>
+					</div>
+				</article>
+				<article>
+					<img src="{% static 'images/2.jpg' %}" alt="" />
+					<div class="inner">
+					</div>
+				</article>
+				<article>
+					<img src="{% static 'images/1.jpg' %}"  alt="" />
+					<div class="inner">
+					</div>
+				</article>
+				
+			</section>
+
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assets/js/skel.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>

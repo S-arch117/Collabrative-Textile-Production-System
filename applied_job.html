@@ -1,0 +1,49 @@
+{%include 'header.html'%}
+
+<html>
+<head>
+<style>
+table {
+	font-family: times new roman;
+	border-collapse: collapse;
+	width: 100%;
+}
+td, th{
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 style="padding-top: 20px;font-size: 28px;font-family: Algerian;"><center><i>View Applied Job Detail</i></center></h1>
+</div>
+<table class="table table-bordered">
+	<tr>
+		<th>Sno</th>
+		<th>Applier Name</th>
+		<th>Email Id</th>
+		<th>Mobile</th>
+		<th>Resume</th>
+	
+
+	</tr>
+{% for i in detail %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{i.applier_name}}</td>
+		<td>{{i.email}}</td>
+		<td>{{i.phone_number}}</td>
+		<td><a href="/media/{{i.resume}}" target="_blank" class="btn btn-info btn-xs"><i class="fa fa-download"></i></a></td>
+	
+	</tr>
+{% empty %}
+	<tr>
+		<td>No Applier</td>
+	</tr>
+	{% endfor %}
+</table>
+</body>
+</html>
+{%include 'footer.html'%}
